@@ -6,7 +6,12 @@
 dist
 build
 .ipynb_checkpoints
+__pycache__
 
+archive
 data
 submission
 .DS_Store
+
+preview
+*.h5
