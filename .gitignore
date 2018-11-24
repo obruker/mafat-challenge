@@ -1,0 +1,12 @@
+# PyCharm
+.idea
+*.iml
+
+# Python
+dist
+build
+.ipynb_checkpoints
+
+data
+submission
+.DS_Store
