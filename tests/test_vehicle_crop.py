@@ -13,14 +13,14 @@ class VehicleCropTest(unittest.TestCase):
                   Point(4002.600098,1211.411255),
                   Point(4004.289307,1225.711792)]
         expected = [points[1],points[2],points[3],points[0]]
-        self.assertEquals(vehicle_crop.get_rotated_points(points), expected)
+        self.assertEquals(vehicle_crop.get_bounds(points), expected)
 
     def test_get_angle(self):
         points = [Point(20,10),
                   Point(30,20),
                   Point(20,30),
                   Point(10,20)]
-        rect = vehicle_crop.get_rotated_points(points)
+        rect = vehicle_crop.get_bounds(points)
         self.assertEquals(vehicle_crop.find_angle(rect), math.pi / 4)
 
     def test_get_angle_under_45_degrees(self):
@@ -28,7 +28,7 @@ class VehicleCropTest(unittest.TestCase):
                   Point(11,1),
                   Point(30,2),
                   Point(29,12)]
-        rect = vehicle_crop.get_rotated_points(points)
+        rect = vehicle_crop.get_bounds(points)
         angle = math.degrees(vehicle_crop.find_angle(rect))
         self.assertEquals(angle, math.pi / 4)
 
