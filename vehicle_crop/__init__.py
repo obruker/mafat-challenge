@@ -7,7 +7,7 @@ def crop_vehicle(im, polygon, margins):
     points = list(map(lambda x: Point(x[0], x[1]), polygon))
     bounds = get_bounds(points)
     angle = find_angle(bounds)
-    return cropWithPoints(im, angle, get_enlarged_rect(bounds, margins))
+    return cropWithPoints(im, angle, add_margins(bounds, margins))
 
 
 def get_bounds(points):
@@ -31,15 +31,14 @@ def find_angle(rectangle):
     return (longest_angle + across_angle) / 2
 
 
-def get_enlarged_rect(rect, d):
-    angle = find_angle(rect)
-    # print("degrees: " + str(math.degrees(angle)))
+def add_margins(rectangle, d):
+    angle = find_angle(rectangle)
     if angle < 0:
         angle = pi / 2 + angle
 
-    enlarged = [rect[0] + Point(d * cos(1.25 * pi - angle), d * sin(1.25 * pi - angle)),
-                rect[1] + Point(d * cos(1.75 * pi - angle), d * sin(1.75 * pi - angle)),
-                rect[2] + Point(d * cos(0.25 * pi - angle), d * sin(0.25 * pi - angle)),
-                rect[3] + Point(d * cos(0.75 * pi - angle), d * sin(0.75 * pi - angle))]
+    enlarged = [rectangle[0] + Point(d * cos(1.35 * pi - angle), d * sin(1.35 * pi - angle)),
+                rectangle[1] + Point(d * cos(1.65 * pi - angle), d * sin(1.65 * pi - angle)),
+                rectangle[2] + Point(d * cos(0.35 * pi - angle), d * sin(0.35 * pi - angle)),
+                rectangle[3] + Point(d * cos(0.65 * pi - angle), d * sin(0.65 * pi - angle))]
 
     return enlarged
